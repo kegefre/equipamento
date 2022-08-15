@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+	http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+
+	<changeSet id="1" author="Kellis">
+		<preConditions onFail="MARK_RAN"
+			onFailMessage="Já existe a tabela equipamento">
+			<not>
+				<tableExists tableName="equipamento" />
+			</not>
+		</preConditions>
+		<createTable tableName="equipamento">
+			<column name="id" type="int">
+				<constraints nullable="false" primaryKey="true"
+					primaryKeyName="pk_equipamento" />
+			</column>
+			<column name="equipamento" type="${alfanum}">
+				<constraints nullable="false" />
+			</column>
+			<column name="quantidade" type="int">
+				<constraints nullable="false" />
+			</column>
+			<column name="disponiveis" type="int">
+				<constraints nullable="false" />
+			</column>						
+		</createTable>
+		<addAutoIncrement tableName="equipamento"
+			columnName="id" columnDataType="int" incrementBy="1" startWith="1" />
+	</changeSet>
+
+	<changeSet id="2" author="Kellis">
+		<preConditions onFail="MARK_RAN"
+			onFailMessage="Já existe a tabela usuario">
+			<not>
+				<tableExists tableName="usuario" />
+			</not>
+		</preConditions>
+		<createTable tableName="usuario">
+			<column name="id" type="int">
+				<constraints nullable="false" primaryKey="true"
+					primaryKeyName="pk_usuario" />
+			</column>
+			<column name="usuario" type="${alfanum}">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+		<addAutoIncrement tableName="usuario"
+			columnName="id" columnDataType="int" incrementBy="1" startWith="1" />
+	</changeSet>
+
+	<changeSet id="3" author="Kellis">
+		<preConditions onFail="MARK_RAN"
+			onFailMessage="Já existe a tabela registro">
+			<not>
+				<tableExists tableName="registro" />
+			</not>
+		</preConditions>
+		<createTable tableName="registro">
+			<column name="id" type="int">
+				<constraints nullable="false" primaryKey="true"
+					primaryKeyName="pk_registro" />
+			</column>
+			<column name="equip_id" type="int">
+				<constraints foreignKeyName="fk_registro_equipamento"
+					referencedTableName="equipamento" referencedColumnNames="id" />
+			</column>
+			<column name="usuario_id" type="int">
+				<constraints foreignKeyName="fk_registro_usuario"
+					referencedTableName="usuario" referencedColumnNames="id" />
+			</column>
+			<column name="data_s" type="${data}">
+				<constraints nullable="false" />
+			</column>
+			<column name="data_e" type="${data}">
+				<constraints nullable="false" />
+			</column>
+			<column name="situacao" type="int">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+		<addAutoIncrement tableName="registro"
+			columnName="id" columnDataType="int" incrementBy="1" startWith="1" />
+	</changeSet>
+</databaseChangeLog>
