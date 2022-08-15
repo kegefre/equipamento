@@ -7,13 +7,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.tiacademy.equipamentos.DTO.RegistroDTO;
 import br.com.tiacademy.equipamentos.core.crud.CrudController;
 import br.com.tiacademy.equipamentos.domain.Registro;
 import br.com.tiacademy.equipamentos.service.RegistroService;
 
 @RestController
 @RequestMapping("/registro")
-public class RegistroController extends CrudController<Registro, Long>{
+public class RegistroController extends CrudController<Registro, RegistroDTO, Long>{
 	
 	@Autowired
 	RegistroService service;

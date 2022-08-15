@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.tiacademy.equipamentos.DTO.UsuarioDTO;
 import br.com.tiacademy.equipamentos.core.crud.CrudController;
 import br.com.tiacademy.equipamentos.domain.Usuario;
 import br.com.tiacademy.equipamentos.service.UsuarioService;
 
 @RestController
 @RequestMapping("/usuario")
-
-public class UsuarioController extends CrudController<Usuario, Long> {
+public class UsuarioController extends CrudController<Usuario, UsuarioDTO, Long> {
     @Autowired
     UsuarioService service;
 

@@ -1,39 +1,33 @@
-package br.com.tiacademy.equipamentos.domain;
+package br.com.tiacademy.equipamentos.DTO;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
-import br.com.tiacademy.equipamentos.core.crud.CrudDomain;
+import br.com.tiacademy.equipamentos.domain.Equipamento;
+import br.com.tiacademy.equipamentos.domain.Usuario;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+public class RegistroDTO implements Serializable{
 
-public class Registro implements CrudDomain<Long>,Serializable {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private LocalDate data_s;
 	private LocalDate data_e;
-	private int situacao;
-	
-	@OneToOne
+    private int situacao;
+    
+    @OneToOne
 	@JoinColumn(name="equip_id", referencedColumnName = "id")
 	private Equipamento equipamento;
-	
-	@OneToOne
+    
+    @OneToOne
 	@JoinColumn(name="usuario_id", referencedColumnName = "id")
-	private Usuario usuario;
-
+    private Usuario usuario;
+      
 }
